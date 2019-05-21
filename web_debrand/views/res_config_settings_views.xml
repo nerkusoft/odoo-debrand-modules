@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.web_debrand</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Debrand" string="Debrand"
+                     data-key="web_debrand">
+                    <field name="company_id" invisible="1"/>
+                    <h2>Company</h2>
+                    <div class="row mt16 o_settings_container" id="web_debrand_settings"
+                         title="This sets company logo and company favicon. This is advised if logo and favicon needs to be replaced.">
+                        <div class="col-xs-12 col-md-6 o_setting_box" id="change_company_logo"
+                             title="Lets the company customize company logo.">
+                            <div class="o_setting_right_pane">
+                                <label string="Company Logos"/>
+                                <div class="text-muted">
+                                    Logo and favicon of your company
+                                </div>
+                                <div class="content-group">
+                                    <div class="row">
+                                        <label class="col-md-3 o_light_label" for="company_logo"/>
+                                        <field name="company_logo" widget="image" class="pull-left oe_avatar"/>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-3 o_light_label" for="company_favicon"/>
+                                        <field name="company_favicon" widget="image" class="pull-left oe_avatar"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" id="company_details">
+                            <div class="o_setting_right_pane">
+                                <label string="Company Details"/>
+                                <div class="text-muted">
+                                    Name and website of your company
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label class="col-md-3 o_light_label" string="Name"/>
+                                        <field name="company_name"/>
+                                    </div>
+                                    <div class="row mt16">
+                                        <label class="col-md-3 o_light_label" string="Website"/>
+                                        <field name="company_website"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-xs-12 col-md-6 o_setting_box" id="button_error">
+                            <div class="o_setting_right_pane">
+                                <label for="check_error" string="Check Error Dialogue"/>
+                                <div id="check_error" class="oe_inline">
+                                    <button name="error" id="error" type="object" string="error" class="btn-danger"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" id="button_warning">
+                            <div class="o_setting_right_pane">
+                                <label for="checkwarning" string="Check Warning Dialogue"/>
+                                <div id="check_warning" class="oe_inline">
+                                    <button name="warning" id="warning" type="object" string="warning" class="btn-warning"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

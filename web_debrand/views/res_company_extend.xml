@@ -1,0 +1,14 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="res_company_placeholder_view_form">
+            <field name="name">res.company.placeholder.replace.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='website']" position="replace">
+                     <field name="website" widget="url" placeholder="e.g. https://nerku.com/"/>
+                 </xpath>
+             </field>
+         </record>
+	</data>
+</odoo>

@@ -1,0 +1,139 @@
+<odoo>
+  <data>
+    <template id="menu_secondary_extend" inherit_id="web.menu_secondary">
+        <!-- <xpath expr="//div[@class='o_sub_menu_footer']" position="replace">
+            <div class="o_sub_menu_footer">
+                Powered by
+                <a t-att-href="request.env['res.company'].sudo().search([])[0].company_website or ''" target="_blank">
+                    <span t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+                </a>
+            </div>
+        </xpath> -->
+    </template>
+
+    <!-- <template id="support_page_extend" inherit_id="im_livechat.support_page">
+        <xpath expr="//body" position="replace">
+            <body>
+                <div class="main" style="opacity: 1;">
+                    <h1 class="channel_name">
+                        <t t-esc="channel.name"/>
+                    </h1>
+                    <div>Website Live Chat Powered by
+                        <strong>
+                            <t t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+                        </strong>
+                    </div>
+                </div>
+            </body>
+        </xpath>
+    </template> -->
+
+   <!--  <template id="message_user_assigned_extend" inherit_id="mail.message_user_assigned">
+        <xpath expr="//p[last()]" position="replace">
+            <p style="color:#9E588B;">Powered by
+                <a t-att-href="request.env['res.company'].sudo().search([])[0].company_website or ''">
+                    <t t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+                </a>
+                .
+            </p>
+        </xpath>
+    </template> -->
+
+    <!--<template id="layout_footer_copyright_extend" inherit_id="website.layout" name="Footer Copyright">
+        <xpath expr="//footer" position="inside">
+            <div class="container mt16 mb8">
+                <div class="pull-right" t-if="not editable">
+                    Powered by
+                    <a class="label label-danger"
+                       t-att-href="request.env['res.company'].sudo().search([])[0].company_website or ''">
+                        <t t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+                    </a>
+                    .
+                </div>
+                <div class="pull-left text-muted">
+                    Copyright &amp;copy;
+                    <span t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+                </div>
+            </div>
+        </xpath>
+    </template>-->
+
+    <template id="login_layout_extend" inherit_id="web.login_layout">
+        <xpath expr="//a[@href='/web/database/manager']" position="replace">
+            <a class="" href="/web/database/manager"></a>
+        </xpath>
+        <xpath expr="//a[@href='https://www.odoo.com']" position="replace">
+            <a href="https://nerku.com" target="_blank">Powered by
+                <span>Nerku</span>
+            </a>
+        </xpath>
+    </template>
+
+    <!--<template id="footer_custom_extend" inherit_id="website.footer_custom">
+        <xpath expr="//h2" position="replace"/>
+    </template>-->
+    <!--put the company logo or the fav icons path here in href-->
+    <template id="web_layout_extend" inherit_id="web.layout">
+        <xpath expr="//title" position="replace">
+            <t t-set="website_id" t-value="request.env['res.company'].sudo().search([])"/>
+            <title>
+                <t t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+            </title>
+        </xpath>
+        <xpath expr="//link[@rel='shortcut icon']" position="replace">
+            <t>
+                <link type="image/x-icon" rel="shortcut icon"
+                      t-att-href="'data:image/png;base64,%s' % to_text(website_id and website_id[0] and website_id[0].company_favicon or '')"/>
+                <!--<link type="image/x-icon" rel="shortcut icon"
+                      t-att-href="request.env['res.company'].sudo().search([])[0].favicon_url or ''"/>-->
+            </t>
+        </xpath>
+    </template>
+
+    <template id="assets_backend_extend" name="Debranding title JS" inherit_id="web.assets_backend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/less" href="/web_debrand/static/src/less/web_debrand.less"/>
+        </xpath>
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/web_debrand/static/src/js/title.js"/>
+            <script type="text/javascript" src="/web_debrand/static/src/js/app_window_title.js"/>
+        </xpath>
+        <!--<xpath expr="//script[last()]" position="after">
+        </xpath>-->
+    </template>
+    <!-- Code for Enterprise Edition-->
+    <template id="webclient_bootstrap" inherit_id="web_enterprise.webclient_bootstrap">
+        <xpath expr="//link[@rel='icon']" position="replace">
+            <link rel="icon" sizes="192x192" href=""/>
+        </xpath>
+        <xpath expr="//link[@rel='apple-touch-icon']" position="replace">
+            <link rel="apple-touch-icon" sizes="152x152" href=""/>
+        </xpath>
+    </template>
+    <template id="login_layout_extend" inherit_id="web.login_layout">
+        <xpath expr="//div[@class='row']" position="replace">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 o_database_list">
+                    <div class="text-center">
+                        <img t-attf-src="/web/image/res.company/{{request.env['res.company'].sudo().search([])[0].id}}/logo/250x250"/>
+                    </div>
+                    <t t-raw="0"/>
+                    <div class="text-center" t-if="not disable_footer">
+                        <!-- <t t-if="not disable_database_manager">
+                            <a class="" href="/web/database/manager">Manage Databases</a>
+                            |
+                        </t> -->
+                        <t>
+                            <a t-att-href="request.env['res.company'].sudo().search([])[0].company_website or ''"
+                               target="_blank">Powered by
+                                <span t-esc="request.env['res.company'].sudo().search([])[0].company_name or ''"/>
+
+                            </a>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+  </data>
+</odoo>
